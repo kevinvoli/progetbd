@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="forum.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"  >
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <title>Forum</title>
+</head>
+<body>
+    <div class="container" id="discution">
+        <h2>titre:{{ sujet.sujet }}</h2>
+        <div class="row msg">
+            <div class="col-md-3">
+                <img src="" alt="">
+                <span>{{ sujet.pseudo }}</span>
+            </div>
+            <div class="col-md-9">
+                <p>{{ sujet.date_send }}</p>
+                <p>{{ sujet.content }}</p>
+            </div>
+        </div>
+
+        <div id="post">
+            {%  for element in reponses  %}
+            <div class="row msg">
+                <div class="col-md-3">
+                    <img src="" alt="">
+                    <span>{{ element.pseudo }}</span>
+                </div>
+                <div class="col-md-9">
+                    <p>{{ element.date_send }}</p>
+                    <p>{{ element.content }}</p>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            <span>Edité par: </span>
+            <form action="" method="POST">
+                    <input type="hidden" name="sujet_id" id="user_id" value="{{ user.id }}">
+                    <input type="hidden" name="sujet_id" id="sujet_id" value="{{ sujet.id }}">
+                    <textarea name="message" id="msg" cols="30" rows="10" placeholder="votre message"class="form-control"></textarea>
+                    <input type="submit" value="repondre" name="repondre" id="button1" class="btn btn-primary btn-lg" style="float:right; margin-top: 15px;">
+            </form>
+        </div>
+    </div>
+
+<script>
+    const socket =io('http://127.0.0.1:8080')
+
+    $('#button1').click(e => {
+        e.preventDefault()
+        sendCommentaire()
+    })
+    function sendCommentaire(){
+        const message = $('#msg').val()
+        const aux ={
+            sujet_id : $('#sujet_id').val(),
+            user_id : $('#user_id').val(),
+            content: message
+        }
+        socket.emit('sendResponse',aux,(aux)=>{
+            insertPost(aux)
+            $('#msg').val('')
+        })
+
+    }
+
+    function insertPost(data) {
+        console.log(data)
+        $('#post').prepend('<div class="row msg">\n' +
+            '                <div class="col-md-3">\n' +
+            '                    <img src="" alt="">\n' +
+            '                    <span>'+ data.pseudo +'</span>\n' +
+            '                </div>\n' +
+            '                <div class="col-md-9">\n' +
+            '                    <p>'+ data.date_send +'</p>\n' +
+            '                    <p>' + data.content +'</p>\n' +
+            '                </div>\n' +
+            '\n' +
+            '            </div>')
+    }
+
+    socket.on('newMessage', data => insertPost(data))
+</script>
+</body>
+</html>

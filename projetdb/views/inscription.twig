@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="public/inscription.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"  >
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <title>Formulaire d'inscription</title>
+    	<style>
+		body{
+	background: url('jardin.jpg') no-repeat;
+	background-size: cover;
+}
+
+#titre{
+	text-align: center;
+	margin-bottom: 40px;
+	margin-top: 100px;
+	text-decoration: underline;
+}
+#connexion{
+	margin-top: 45;
+}
+	</style>
+</head>
+<body>
+    <div class="container">
+            <h1>inscription</h1>
+        <form method="POST" action="" id="form" class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="pseudo">Pseudo</label>
+                    <input type="text" name="pseudo" id="pseudo" placeholder="entrez votre pseudo svp!!!" class="form-control">
+                    
+                </div>
+                <div class="col-md-6">
+                        <label for="name">Nom</label>
+                        <input type="text" name="name" id="name" placeholder="entrez votre nom svp!!!" class="form-control">
+                        
+                    </div>
+                    <div class="col-md-6">
+                            <label for="prenoms">Prenoms</label>
+                            <input type="text" name="lastname" id="prenoms" placeholder="entrez votre prenoms  svp!!!" class="form-control">
+                            
+                    </div>
+                    <div class="col-md-6">
+                            <label for="tel">Telephone</label>
+                            <input type="tel" name="tel" id="tel" placeholder="+225 xx xx xx xx" class="form-control">
+                            
+                    </div>
+                    <div class="col-md-6">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="entrez votre mail svp!!!" class="form-control">
+                                
+                    </div>
+                    <div class="col-md-6">
+                            <label for="pwd">Password</label>
+                            <input type="password" name="password" id="pwd" placeholder="entrez votre mot de passe svp!!!" class="form-control">
+                            
+                    </div>
+                    <div class="col-md-6">
+                            <label for="pwd">repeat Password</label>
+                            <input type="password" name="passwordC" id="pwd" placeholder="entrez votre mot de passe svp!!!" class="form-control">
+                            
+                    </div>
+                   <div style="text-align:center;">
+                        <div class="col-md-12">
+                                <input style="width: 520px" type="submit" class="btn btn-success btn-lg" name="form_inscription" id="valider" value="S'inscrire">
+                                
+                        </div>
+                   </div>
+            </div>
+        </form>
+        <br>
+        <p style="color: red">
+            {% for error in errors %}
+                {{error.msg}}<br>
+            {% endfor %}
+        </p>
+        <p style="color: red">
+            {% if erreur %}
+                {{erreur}}
+            {% endif %}
+        </p>
+    </div>
+</body>
+</html>

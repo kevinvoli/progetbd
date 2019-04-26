@@ -1,0 +1,13 @@
+
+body{
+	background: url(../images/modifier.jpg) no-repeat;
+	background-size: cover;
+}
+
+.self{
+	float: right;
+}
+.card{
+	margin: 30px auto;
+	background-color: #f0efec;
+}

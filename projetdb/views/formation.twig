@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>AGRIXXI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body,html{
+      font-size:16px !important;
+
+    }
+    </style>
+</head>
+<body>
+  <br><br>
+        <div class="container ui segment form">  
+                <form id="contact" action="" method="post">
+                  
+                  <h1> <i class="ui icon th mini"></i> FORMATION </h1>
+                  <fieldset>
+                      Categorie:
+                       <select name="categorie">
+                           <optgroup label="categorie1">
+                             {% for el in element %}
+                                <option value="{{el.categori_id}}">{{el.name}}</option>
+                              {% endfor %}
+                           </optgroup></select> <br><br>
+                           <br><br>
+                        <input type="text" name="culture" placeholder="entrez votre culture" required>
+                      </fieldset>
+                  <fieldset>
+                      titre:
+                    <input placeholder="Title" name="titre" type="text" tabindex="1" required autofocus>
+                  </fieldset>
+                 
+<br><br>
+                  <fieldset>
+                    <textarea placeholder="Description...." tabindex="5" name="description" required></textarea>
+                  </fieldset>
+                  <br><br>
+                  <fieldset>
+                    <button class="ui button green" name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+                  </fieldset>
+                
+                </form>
+              </div>
+</body>
+
+</html>

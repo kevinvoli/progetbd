@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <link rel="stylesheet" href="forum.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"  >
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <style>
+            *{
+    font-weight: bold;
+    color: black;
+}
+h3{
+    text-transform: uppercase;
+    text-align: center;
+}
+form{
+    padding: 5px;
+    font-family: cursive;
+    font-size: 20px;
+}
+
+#button1{
+    float:right; margin-top: 15px; 
+    background: goldenrod;width: 150px;
+}
+#button1:hover{
+    float:right; margin-top: 15px; 
+    background: rgb(141, 112, 38);width: 150px;
+    font-size: 20px;
+}
+
+.msg{
+    border-bottom:1px solid;
+    padding-top: 10px;
+}
+
+.msg:hover{
+    border-bottom:1px solid;
+    padding-top: 10px;
+}
+#discution{
+    background-color: rgb(238, 238, 238);
+}
+
+body{
+    background: url('champs1.jpg') no-repeat;
+    background-size: cover;
+}
+        </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            
+        </div>
+        <div>
+                <h3>poster votre preocupation</h3>
+            <form action="" id="form">
+                    <label for="categories">les differentes categories</label>
+
+                    <select name="categories" id="categories">
+                        <option value="">--choisir une catecorie--</option>
+                        <option value="5" >cat1</option>
+                        <option value="8" >cat2</option>
+                        <option value="9" >cat3</option>
+                    </select>
+                
+                <div class="row">
+                        <label for="titre">titre :</label>
+                        <input type="text" name="titre" placeholder="choisir un titre " class="form-control" id="sujet"><br>
+                        <label for="msg">votre message</label><br>
+                        <textarea name="message" id="msg" cols="30" rows="10" placeholder="votre message"class="form-control"></textarea>
+                        <input  value="poster" name="poster" id="button1" class="btn btn-primary btn-lg" style="float:right; margin-top: 15px;">
+                </div>
+            </form>
+        </div>
+    </div>
+<script type="text/javascript">
+     $('#button1').click(()=>{
+         sendCommentaire()
+     })
+    const socket =io('http://127.0.0.1:8080') 
+    function sendCommentaire(){
+       const cc ={
+           user_id:'2',
+           categori_id:document.getElementById('categories').value,
+           sujet:document.getElementById('sujet').value,
+           content:document.getElementById('msg').value
+       }
+
+        socket.emit('postMessage',cc,clb=>{
+            if(clb){
+  alert('ok')
+            } else {
+
+ alert('mal')
+            }
+
+        })
+
+    }
+
+</script>
+
+</body>
+</html>

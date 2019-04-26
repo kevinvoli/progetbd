@@ -1,0 +1,29 @@
+<html>
+    <header>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css" />
+            
+    </header>
+<body>
+<div class="class ui segment">
+
+    <h2><i class="ui icon th"></i> PRODUITS </h2>
+
+    <div>
+        LISTE DES PRODUITES
+    </div>
+    <br>
+   <p>{% for el in element %}
+        {{el.libelle}}<br>
+        {{el.quantite}}<br>
+        {{el.prix}}<br>
+        {{el.description}}<br>
+    {% endor %}
+    </p>
+        
+       
+</div>
+ 
+</body>
+</html>
